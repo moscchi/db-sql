@@ -1,0 +1,57 @@
+body {
+    background-color: gray;
+    color: white;
+};
+
+.botonera {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+h1 {
+    color:rgb(227, 241, 253);
+}
+
+img {
+    height: 190px;
+    width: 140px;
+    border-radius: 20%;
+    border: 1px solid rgba(143, 143, 143, 0.63);
+
+}
+.productos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin: 10px 0px;
+    
+}
+
+.products-cards {
+    font-size: 20px;
+    margin: 10px 0px;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(40, 22, 105, 0.486);
+    border-radius: 5%;
+  }
+  .productos h3{
+      border-radius: 15%;
+  }
+  
+  .productos h3,
+  .productos p,
+  .productos img{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+  }
+
+  .productos img{
+    display: flex !important;
+    margin-left: auto;
+    margin-right: auto;
+}
