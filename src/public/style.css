@@ -55,3 +55,9 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+
+#output p {
+    color: #ffff;
+    padding: 2px;
+    margin: 0 10px;
+}

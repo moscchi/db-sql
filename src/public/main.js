@@ -5,6 +5,5 @@ const productForm = document.getElementById('product-form');
 
 function evento(e){
     e.preventDefault()
-    console.log('entre al form');
     saveProduct(title.value, price.value, thumbnail.value);
 }

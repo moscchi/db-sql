@@ -10,11 +10,10 @@ const addProductService = require('../services/postProduct');
 
 let products = async () => {
     const pr = await getProductsService();
-/*     let productos = [pr] */
     return pr; 
 }
-/* let products = ['hola', 'chau'] */
 
+let msjs = [];
 const server = express();
 const httpServer = new HttpServer(server);
 const io = new IOServer(httpServer);
@@ -37,12 +36,11 @@ server.engine('.hbs', exphbs(
 
  io.on('connection', (socket) => {
      console.log('Usuario conectado.', socket.id);
-     
+     socket.emit('server:newmessage', msjs);
      products().then(prods => {
          socket.emit('server:loadProducts', prods);
      })
         socket.on('client:saveproduct', async (data) => {
-            console.log('en el server', data);
             const producto = {
                 body: {
                     title: data.title,
@@ -51,16 +49,19 @@ server.engine('.hbs', exphbs(
                 }
             }
             await addProductService(producto);
-            console.log(producto);
-            products().then(produs =>{
-                produs.push(producto)
-                console.log(produs);
-                socket.emit('server:loadNewProducts', produs);
+            products().then(prods => {
+                io.emit('server:loadnewproducts', prods);
+            });
             })
 
-            
+        socket.on('client:mensaje', data => {
+            const msje = {
+                username: data.username,
+                message: data.message
+            };
+            msjs.push(msje);
+            io.emit('server:newmessage', msjs);
         })
-
- })
+        })
 module.exports = httpServer;
   

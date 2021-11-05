@@ -2,7 +2,6 @@ const eldiv = document.getElementById('productos')
 
 
 const addProduct = pr =>{
-    console.log(pr);
     eldiv.innerHTML += `<div class='products-cards'>
                                 <h3>${pr.title} | #${pr.id}</h3>
                                 <p>$${pr.price}</p>
@@ -14,5 +13,15 @@ const addProduct = pr =>{
 
 const loadProduct = (arg) => {
     if(arg == undefined) return;
+    eldiv.innerHTML = "";
     arg.forEach((pr)=>addProduct(pr));
+}
+
+const addMsj = msj => {
+    output.innerHTML += `<p>${msj.username}: ${msj.message}`;
+}
+
+const loadMsj = msjs => {
+    output.innerHTML = "";
+    msjs.forEach(msj => addMsj(msj));
 }

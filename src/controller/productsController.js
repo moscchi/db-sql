@@ -13,10 +13,8 @@ const getProducts = async (_, res) => {
 
 const addProduct = async (req, res) =>{
     try {
-        console.log('Entre al controller');
         const newObj = await addProductService(req);
         const products = await getProductsService();
-        console.log(newObj);
         isActive = true;
         res.render("main", {products});
     } catch (e) {
@@ -24,14 +22,4 @@ const addProduct = async (req, res) =>{
     }
 }
 
-const navigation = async (req, res) => {
-    try {
-        const products = await getProductsService();
-        console.log({products});
-        res.json({products})  
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-module.exports = {getProducts, addProduct, navigation};
+module.exports = {getProducts, addProduct};
