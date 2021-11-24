@@ -15,7 +15,6 @@ const addProduct = async (req, res) =>{
     try {
         const newObj = await addProductService(req);
         const products = await getProductsService();
-        isActive = true;
         res.render("main", {products});
     } catch (e) {
         console.log(e);

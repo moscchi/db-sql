@@ -1,5 +1,4 @@
 const socket = io();
-/* const eldiv = document.getElementById('productos') */
 
 let message = document.getElementById('message');
 let username = document.getElementById('username');
@@ -16,6 +15,7 @@ btn.addEventListener('click', () => {
 
 socket.on('connection', console.log('on desde client'))
 socket.on('server:loadProducts', prods => {
+    console.log('los prod del front', prods);
     loadProduct(prods);
 });
 const saveProduct = (title, price, thumbnail) => {
@@ -25,9 +25,9 @@ const saveProduct = (title, price, thumbnail) => {
         thumbnail
     })
 }
-socket.on('server:loadnewproducts', prods => {
+socket.on('server:loadnewproducts', produs => {
     eldiv.innerHTML = '';
-    loadProduct(prods);
+    loadProduct(produs);
 });
 
 socket.on('server:newmessage', msjs => {

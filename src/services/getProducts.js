@@ -1,12 +1,18 @@
-const fs = require('fs');
+const options = require('../database/productos/index')
+const knex = require('knex')({client: 'mysql',
+connection: {
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'admin',
+    database: 'coder_house'
+},
+pool: {min:0, max:7}});
 
 const getProductsService = async () => {
-    try {
-      const objs = await fs.promises.readFile("src/database/productos.txt", "utf-8");
-      return JSON.parse(objs);
-    } catch (err) {
-      return { error: 'Productos no encontrados'};
-    }
-}
+  const productos = knex.from('productos').select('*')
+    .catch(err => console.log(err))
+    /* .finally(() => knex.destroy()); */
+  return productos;
+  }
 
 module.exports = getProductsService;

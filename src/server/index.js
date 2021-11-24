@@ -37,10 +37,11 @@ server.engine('.hbs', exphbs(
  io.on('connection', (socket) => {
      console.log('Usuario conectado.', socket.id);
      socket.emit('server:newmessage', msjs);
-     products().then(prods => {
+     (async()=>{
+         const prods = await getProductsService();
          socket.emit('server:loadProducts', prods);
-     })
-        socket.on('client:saveproduct', async (data) => {
+    })();
+       socket.on('client:saveproduct', async (data) => {
             const producto = {
                 body: {
                     title: data.title,
@@ -49,11 +50,10 @@ server.engine('.hbs', exphbs(
                 }
             }
             await addProductService(producto);
-            products().then(prods => {
-                io.emit('server:loadnewproducts', prods);
-            });
+            products().then(produs => {
+                io.emit('server:loadnewproducts', produs);
             })
-
+        })
         socket.on('client:mensaje', data => {
             const msje = {
                 username: data.username,
