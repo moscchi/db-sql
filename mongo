@@ -1,0 +1,207 @@
+
+use ecommerce
+switched to db ecommerce
+> var inserciones =
+... [
+...   {
+...     title: "sandalia",
+...     price: 3300,
+...     genero: "mujer",
+...   },
+...   {
+...     title: "ojota",
+...     price: 1300,
+...     genero: "unisex",
+...   },
+...   {
+...     title: "zapatilla",
+...     price: 3300,
+...     genero: "mujer",
+...   },
+...   {
+...     title: "mediax3",
+...     price: 900,
+...     genero: "unisex",
+...   },
+...   {
+...     title: "tacos",
+...     price: 4300,
+...     genero: "mujer",
+...   },
+...   {
+...     title: "zapatilla",
+...     price: 4300,
+...     genero: "hombre",
+...   },
+...   {
+...     title: "botines",
+...     price: 2500,
+...     genero: "mujer",
+...   },
+...   {
+...     title: "botines",
+...     price: 3000,
+...     genero: "hombre",
+...   },
+...   {
+...     title: "sandalia",
+...     price: 4900,
+...     genero: "mujer",
+...   },
+...   {
+...     title: "ojota",
+...     price: 1900,
+...     genero: "unisex",
+...   },
+... ]
+> db.productos.insert(inserciones);
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 10,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.productos.count()
+11
+db.mensajes.insert({autor: 'Juan', mensaje: 'Hello bitches'})
+WriteResult({ "nInserted" : 1 })
+> db.mensajes.find()
+{ "_id" : ObjectId("61a1a7378de358b5c64dd8cf"), "autor" : "Juan", "mensaje" : "Hello bitches" }
+> db.mensajes.insert([
+...   {
+...     autor: "El Lokiyo",
+...     mensaje: "Que te pasa loco?"
+...   },
+...   {
+...     autor: "Slenderman",
+...     mensaje: "Moriras"
+...   },
+...   {
+...     autor: "El Lokiyo",
+...     mensaje: "Que te pasa loco?"
+...   },
+...   {
+...     autor: "Slenderman",
+...     mensaje: "Moriras"
+...   },
+...   {
+...     autor: "El Lokiyo",
+...     mensaje: "Que te pasa loco?"
+...   },
+...   {
+...     autor: "Slenderman",
+...     mensaje: "Moriras"
+...   },
+...   {
+...     autor: "El Lokiyo",
+...     mensaje: "Que te pasa loco?"
+...   },
+...   {
+...     autor: "Slenderman",
+...     mensaje: "Moriras"
+...   },
+...   {
+...     autor: "El Lokiyo",
+...     mensaje: "Que te pasa loco?"
+...   },
+...   {
+...     autor: "Slenderman",
+...     mensaje: "Moriras"
+...   }
+... ])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 10,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.mensajes.find()
+{ "_id" : ObjectId("61a1a7378de358b5c64dd8cf"), "autor" : "Juan", "mensaje" : "Hello bitches" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d0"), "autor" : "El Lokiyo", "mensaje" : "Que te pasa loco?" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d1"), "autor" : "Slenderman", "mensaje" : "Moriras" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d2"), "autor" : "El Lokiyo", "mensaje" : "Que te pasa loco?" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d3"), "autor" : "Slenderman", "mensaje" : "Moriras" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d4"), "autor" : "El Lokiyo", "mensaje" : "Que te pasa loco?" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d5"), "autor" : "Slenderman", "mensaje" : "Moriras" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d6"), "autor" : "El Lokiyo", "mensaje" : "Que te pasa loco?" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d7"), "autor" : "Slenderman", "mensaje" : "Moriras" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d8"), "autor" : "El Lokiyo", "mensaje" : "Que te pasa loco?" }
+{ "_id" : ObjectId("61a1a7998de358b5c64dd8d9"), "autor" : "Slenderman", "mensaje" : "Moriras" }
+>
+> db.mensajes.count()
+11
+5.a)
+> db.productos.insert({"title": "Borcegos", "price": 3001, "genero": "unisex"})
+WriteResult({ "nInserted" : 1 })
+5.b) 
+
+i)> db.productos.find({"price": {$lt: 1000}});
+{ "_id" : ObjectId("61a13799241e4f65456c0466"), "title" : "mediax3", "price" : 900, "genero" : "unisex" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8c8"), "title" : "mediax3", "price" : 900, "genero" : "unisex" }
+
+ii)> db.productos.find({ $and: [ {price:{$lt:3000}}, {price:{$gt:1000}} ] });
+{ "_id" : ObjectId("61a13799241e4f65456c0464"), "title" : "ojota", "price" : 1300, "genero" : "unisex" }
+{ "_id" : ObjectId("61a13799241e4f65456c0469"), "title" : "botines", "price" : 2500, "genero" : "mujer" }
+{ "_id" : ObjectId("61a13799241e4f65456c046c"), "title" : "ojota", "price" : 1900, "genero" : "unisex" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8c6"), "title" : "ojota", "price" : 1300, "genero" : "unisex" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8cb"), "title" : "botines", "price" : 2500, "genero" : "mujer" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8ce"), "title" : "ojota", "price" : 1900, "genero" : "unisex" }
+
+iii)> db.productos.find({price: {$gt: 3000}});
+{ "_id" : ObjectId("61a13799241e4f65456c0463"), "title" : "sandalia", "price" : 3300, "genero" : "mujer" }
+{ "_id" : ObjectId("61a13799241e4f65456c0465"), "title" : "zapatilla", "price" : 3300, "genero" : "mujer" }
+{ "_id" : ObjectId("61a13799241e4f65456c0467"), "title" : "tacos", "price" : 4300, "genero" : "mujer" }
+{ "_id" : ObjectId("61a13799241e4f65456c0468"), "title" : "zapatilla", "price" : 4300, "genero" : "hombre" }
+{ "_id" : ObjectId("61a13799241e4f65456c046b"), "title" : "sandalia", "price" : 4900, "genero" : "mujer" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8c5"), "title" : "sandalia", "price" : 3300, "genero" : "mujer" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8c7"), "title" : "zapatilla", "price" : 3300, "genero" : "mujer" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8c9"), "title" : "tacos", "price" : 4300, "genero" : "mujer" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8ca"), "title" : "zapatilla", "price" : 4300, "genero" : "hombre" }
+{ "_id" : ObjectId("61a1a6898de358b5c64dd8cd"), "title" : "sandalia", "price" : 4900, "genero" : "mujer" }
+{ "_id" : ObjectId("61a25c79adf5e022b4d26d7c"), "title" : "Borcegos", "price" : 3001, "genero" : "unisex" }
+
+iv)> db.productos.find().sort({price: 1}).limit(1).skip(3)
+{ "_id" : ObjectId("61a13799241e4f65456c0464"), "title" : "ojota", "price" : 1300, "genero" : "unisex" }
+
+c) > db.productos.updateMany({}, {$set: {"stock": 100}});
+{ "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 11 }
+
+d) > db.productos.updateMany({price: {$gt: 4000}}, {$set: {"stock": 0}});
+{ "acknowledged" : true, "matchedCount" : 6, "modifiedCount" : 6 }
+
+e) > db.productos.deleteMany({price: {$lt: 1000}})
+{ "acknowledged" : true, "deletedCount" : 2 }
+
+6) use admin
+switched to db admin
+> db.createUser({user: "pepe", pwd: "asd456", roles: [{role:'read', db:'productos'}]});
+Successfully added user: {
+        "user" : "pepe",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "ecommerce"
+                }
+        ]
+}
+ db.productos.insertOne({title: "hello"})
+uncaught exception: WriteCommandError({
+        "ok" : 0,
+        "errmsg" : "not authorized on ecommerce to execute command { insert: \"productos\", ordered: true, lsid: { id: UUID(\"b4e1c515-a2e4-494c-8c2a-0c0051a3e500\") }, $db: \"ecommerce\" }",
+        "code" : 13,
+        "codeName" : "Unauthorized"
+}) :
+WriteCommandError({
+        "ok" : 0,
+        "errmsg" : "not authorized on ecommerce to execute command { insert: \"productos\", ordered: true, lsid: { id: UUID(\"b4e1c515-a2e4-494c-8c2a-0c0051a3e500\") }, $db: \"ecommerce\" }",
+        "code" : 13,
+        "codeName" : "Unauthorized"
+})
